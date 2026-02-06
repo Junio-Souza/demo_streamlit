@@ -4,7 +4,6 @@ st.set_page_config(page_title="Demo Web", layout="centered")
 
 st.title("Login")
 
-# Inicializa estado
 if "logado" not in st.session_state:
     st.session_state.logado = False
 
@@ -15,11 +14,9 @@ if st.button("Entrar"):
     if usuario == "admin" and senha == "123":
         st.session_state.logado = True
         st.success("Login realizado com sucesso")
+        st.info("Acesse as telas pelo menu lateral")
     else:
         st.error("Usuário ou senha inválidos")
 
-if st.session_state.logado:
-    st.info("Use o menu lateral para navegar")
-else:
-    st.warning("Faça login para acessar as telas")
+if not st.session_state.logado:
     st.stop()
