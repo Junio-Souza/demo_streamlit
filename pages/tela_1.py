@@ -1,11 +1,10 @@
 import streamlit as st
 
-st.title("Tela 1 – Preenchimento de dados")
+if not st.session_state.get("logado", False):
+    st.warning("Faça login para acessar esta página")
+    st.switch_page("main.py")
 
-# Proteção (caso tente acessar direto)
-if "logado" not in st.session_state or not st.session_state.logado:
-    st.warning("Acesso não autorizado")
-    st.stop()
+st.title("Tela 1 – Preenchimento de dados")
 
 nome = st.text_input("Nome")
 idade = st.number_input("Idade", min_value=0, max_value=120)
