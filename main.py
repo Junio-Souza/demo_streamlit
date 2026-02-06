@@ -1,12 +1,15 @@
 import streamlit as st
 
-st.set_page_config(page_title="Demo Web", layout="centered")
+st.set_page_config(
+    page_title="Demo Arquitetura – Execução sem VM",
+    layout="centered"
+)
 
-# Inicializa estado
+# Estado inicial
 if "logado" not in st.session_state:
     st.session_state.logado = False
 
-# 🔒 ESCONDER MENU LATERAL ANTES DO LOGIN
+# Esconde sidebar antes do login
 if not st.session_state.logado:
     st.markdown(
         """
@@ -19,16 +22,19 @@ if not st.session_state.logado:
         unsafe_allow_html=True
     )
 
-st.title("Login")
+st.title("Acesso ao Processo Automatizado")
 
-usuario = st.text_input("Usuário")
+st.caption(
+    "Demonstração de execução de processo **sem dependência de máquina virtual**"
+)
+
+usuario = st.text_input("Usuário corporativo")
 senha = st.text_input("Senha", type="password")
 
 if st.button("Entrar"):
     if usuario == "admin" and senha == "123":
         st.session_state.logado = True
-        st.success("Login realizado com sucesso")
-        st.info("Menu lateral liberado")
+        st.success("Autenticação validada")
         st.rerun()
     else:
-        st.error("Usuário ou senha inválidos")
+        st.error("Credenciais inválidas")
