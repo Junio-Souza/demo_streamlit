@@ -1,19 +1,16 @@
 import streamlit as st
 
+if not st.session_state.get("logado", False):
+    st.warning("Faça login para acessar esta página")
+    st.switch_page("main.py")
+
 st.title("Tela 2 – Resultado")
 
-# Proteção
-if "logado" not in st.session_state or not st.session_state.logado:
-    st.warning("Acesso não autorizado")
-    st.stop()
-
 if "dados" not in st.session_state:
-    st.info("Nenhum dado preenchido ainda")
+    st.info("Preencha os dados na Tela 1 antes")
     st.stop()
 
 dados = st.session_state.dados
-
-st.subheader("Resumo dos dados informados")
 
 st.write(f"**Nome:** {dados['nome']}")
 st.write(f"**Idade:** {dados['idade']}")
