@@ -1,7 +1,7 @@
 import streamlit as st
 
+# Proteção
 if not st.session_state.get("logado", False):
-    st.warning("Faça login para acessar esta página")
     st.switch_page("main.py")
 
 st.title("Tela 1 – Preenchimento de dados")
